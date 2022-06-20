@@ -73,6 +73,6 @@
 
 	<modules>
 		<module>analyser</module>
-		<module>analyser2</module>
+		
 	</modules>
 </project>
