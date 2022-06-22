@@ -8,17 +8,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import telran.monitoring.dto.PulseJump;
 import telran.monitoring.dto.PulseProbe;
-import telran.monitoring.service.AnalyzerService;
+import telran.monitoring.service.AvgReducerService;
 
 @SpringBootApplication
-public class AnalyserAppl {
+public class AvgReducerAppl {
 	@Autowired
-AnalyzerService service;
-static Logger LOG = LoggerFactory.getLogger(AnalyserAppl.class) ;
+	AvgReducerService service;
+static Logger LOG = LoggerFactory.getLogger(AvgReducerAppl.class);
 	public static void main(String[] args) {
-		SpringApplication.run(AnalyserAppl.class, args);
+		SpringApplication.run(AvgReducerAppl.class, args);
 
 	}
 	@Bean
@@ -26,14 +25,9 @@ static Logger LOG = LoggerFactory.getLogger(AnalyserAppl.class) ;
 		return this::processPulseProbe;
 	}
 	void processPulseProbe(PulseProbe probe) {
-		try {
-			PulseJump jump = service.processProbe(probe);
-			if (jump != null) {
-				LOG.debug("jump: patient {}; previous value {}; current value {}",
-						jump.patientId, jump.value, jump.newValue);
-			}
-		} catch (Exception e) {
-			LOG.error(e.getMessage());
+		Integer avgValue = service.reducing(probe);
+		if (avgValue != null) {
+			LOG.debug("for patient {} avg value is {}", probe.patientId, avgValue);
 		}
 		
 	}

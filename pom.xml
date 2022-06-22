@@ -73,6 +73,7 @@
 
 	<modules>
 		<module>analyser</module>
-		
+
+		<module>avg-reducer</module>
 	</modules>
 </project>
