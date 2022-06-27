@@ -38,6 +38,10 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-client</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -75,5 +79,6 @@
 		<module>analyser</module>
 
 		<module>avg-reducer</module>
+		<module>monitoring-config-server</module>
 	</modules>
 </project>
