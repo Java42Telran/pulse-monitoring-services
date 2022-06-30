@@ -38,6 +38,8 @@ static Logger LOG = LoggerFactory.getLogger(AnalyserAppl.class) ;
 				LOG.debug("jump: patient {}; previous value {}; current value {}",
 						jump.patientId, jump.value, jump.newValue);
 				streamBridge.send(bindingName, jump);
+			} else {
+				LOG.trace("no jump: patient {}; value {} ", probe.patientId, probe.value);
 			}
 		} catch (Exception e) {
 			LOG.error(e.getMessage());

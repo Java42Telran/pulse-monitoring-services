@@ -4,8 +4,10 @@ import java.util.function.Consumer;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.context.annotation.Bean;
 
 import telran.monitoring.dto.PulseProbe;
@@ -15,6 +17,10 @@ import telran.monitoring.service.AvgReducerService;
 public class AvgReducerAppl {
 	@Autowired
 	AvgReducerService service;
+	@Autowired
+	StreamBridge streamBridge;
+	@Value("${app.avg.binding.name}")
+	String bindingName;
 static Logger LOG = LoggerFactory.getLogger(AvgReducerAppl.class);
 	public static void main(String[] args) {
 		SpringApplication.run(AvgReducerAppl.class, args);
