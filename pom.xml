@@ -80,5 +80,6 @@
 
 		<module>avg-reducer</module>
 		<module>monitoring-config-server</module>
+		<module>jumps-mail-notifier</module>
 	</modules>
 </project>

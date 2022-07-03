@@ -2,6 +2,7 @@ package telran.monitoring;
 
 import java.util.function.Consumer;
 
+
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,8 +35,11 @@ static Logger LOG = LoggerFactory.getLogger(AvgReducerAppl.class);
 		Integer avgValue = service.reducing(probe);
 		if (avgValue != null) {
 			LOG.debug("for patient {} avg value is {}", probe.patientId, avgValue);
+			streamBridge.send(bindingName, avgValue);
+		} else {
+			LOG.trace("for patient {} no avg value yet", probe.patientId);
 		}
 		
 	}
-
+	
 }
