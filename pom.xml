@@ -81,5 +81,7 @@
 		<module>avg-reducer</module>
 		<module>monitoring-config-server</module>
 		<module>jumps-mail-notifier</module>
+		<module>doctor-patient-data-provider</module>
+		<module>avg-values-populator</module>
 	</modules>
 </project>
