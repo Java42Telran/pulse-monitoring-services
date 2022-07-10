@@ -3,6 +3,7 @@ package telran.monitoring.entities;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Objects;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -35,5 +36,22 @@ public LocalDateTime getDateTime() {
 
 public int getValue() {
 	return value;
+}
+
+@Override
+public int hashCode() {
+	return Objects.hash(patientId, value);
+}
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	AvgPulseDoc other = (AvgPulseDoc) obj;
+	return patientId == other.patientId && value == other.value;
 }
 }
