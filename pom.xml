@@ -83,5 +83,6 @@
 		<module>jumps-mail-notifier</module>
 		<module>doctor-patient-data-provider</module>
 		<module>avg-values-populator</module>
+		<module>visits-back-office</module>
 	</modules>
 </project>

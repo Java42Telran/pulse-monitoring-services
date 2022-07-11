@@ -27,6 +27,7 @@ AvgValueRepository valueRepository;
 	}
 	
 	void getAvgPulseConsumer(PulseProbe probe) {
+		
 		AvgPulseDoc res = valueRepository.save(AvgPulseDoc.build(probe));
 		LOG.trace("avg value {} for patient {} has been saved", res.getValue(), res.getPatientId());
 	}
