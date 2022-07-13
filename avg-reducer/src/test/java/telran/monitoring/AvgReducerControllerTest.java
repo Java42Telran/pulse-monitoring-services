@@ -43,7 +43,7 @@ public class AvgReducerControllerTest {
 	@Autowired
 	OutputDestination consumer;
 	PulseProbe probeNoAvg = new PulseProbe(PATIENT_ID_NO_AVG, VALUE);
-	PulseProbe probeAvg = new PulseProbe(PATIENT_ID_AVG, VALUE);
+	PulseProbe probeAvgExpected = new PulseProbe(PATIENT_ID_AVG, VALUE);
 
 	
 	String bindingNameProducer = "pulseProbeConsumer-in-0";
@@ -52,7 +52,7 @@ public class AvgReducerControllerTest {
 	
 	@BeforeEach
 	void mockingService() {
-		when(service.reducing(probeAvg)).thenReturn(VALUE);
+		when(service.reducing(probeAvgExpected)).thenReturn(VALUE);
 		when(service.reducing(probeNoAvg)).thenReturn(null);
 	}
 @Test
@@ -65,12 +65,12 @@ void receivingProbNoAvg() {
 }
 @Test
 void receivingProbAvg() throws StreamReadException, DatabindException, IOException {
-	producer.send(new GenericMessage<PulseProbe>(probeAvg), bindingNameProducer);
+	producer.send(new GenericMessage<PulseProbe>(probeAvgExpected), bindingNameProducer);
 	Message<byte[]> message = consumer.receive(10, bindingNameConsumer);
 	assertNotNull(message);
 	ObjectMapper mapper = new ObjectMapper();
-	Integer avgValue = mapper.readValue(message.getPayload(), Integer.class);
-	assertEquals(VALUE, avgValue);
+	PulseProbe probeAvgActual = mapper.readValue(message.getPayload(), PulseProbe.class);
+	assertEquals(probeAvgExpected, probeAvgActual);
 	
 	
 }
