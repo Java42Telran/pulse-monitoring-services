@@ -49,7 +49,7 @@ private void initDb() {
 	
 }
 private void createVisits() {
-	Stream.generate(()->getRandomVisit()).forEach(v -> service.addVisit(v));
+	Stream.generate(()->getRandomVisit()).limit(nVisits).forEach(v -> service.addVisit(v));
 	
 }
 private VisitDto getRandomVisit() {
