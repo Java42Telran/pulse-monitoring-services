@@ -84,5 +84,6 @@
 		<module>doctor-patient-data-provider</module>
 		<module>avg-values-populator</module>
 		<module>visits-back-office</module>
+		<module>avg-values-back-office</module>
 	</modules>
 </project>
