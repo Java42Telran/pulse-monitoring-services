@@ -77,7 +77,6 @@
 
 	<modules>
 		<module>analyser</module>
-
 		<module>avg-reducer</module>
 		<module>monitoring-config-server</module>
 		<module>jumps-mail-notifier</module>
@@ -85,5 +84,6 @@
 		<module>avg-values-populator</module>
 		<module>visits-back-office</module>
 		<module>avg-values-back-office</module>
+		<module>security-gateway</module>
 	</modules>
 </project>

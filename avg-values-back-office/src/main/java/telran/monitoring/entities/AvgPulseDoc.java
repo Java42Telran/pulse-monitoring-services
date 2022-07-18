@@ -57,4 +57,9 @@ public boolean equals(Object obj) {
 	AvgPulseDoc other = (AvgPulseDoc) obj;
 	return patientId == other.patientId && value == other.value;
 }
+
+@Override
+public String toString() {
+	return "AvgPulseDoc [patientId=" + patientId + ", dateTime=" + dateTime + ", value=" + value + "]";
+}
 }
