@@ -1,0 +1,78 @@
+services:
+  analyser:
+    build:
+      analyser
+    mem_limit: 200m
+    mem_reservation: 50m
+    environment:
+      - CLOUDKARAFKA_PASSWORD=${CLOUDKARAFKA_PASSWORD}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - SPRING_PROFILES_ACTIVE=docker
+  avg-reducer:
+    build:
+      avg-reducer
+    mem_limit: 200m
+    mem_reservation: 50m
+    environment:
+      - CLOUDKARAFKA_PASSWORD=${CLOUDKARAFKA_PASSWORD}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - SPRING_PROFILES_ACTIVE=docker
+  avg-values-back-office:
+    build:
+      avg-values-back-office
+    mem_limit: 200m
+    mem_reservation: 50m
+    environment:
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - SPRING_PROFILES_ACTIVE=docker
+  avg-values-populator:
+    build:
+      avg-values-populator
+    mem_limit: 200m
+    mem_reservation: 50m
+    environment:
+      - CLOUDKARAFKA_PASSWORD=${CLOUDKARAFKA_PASSWORD}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - SPRING_PROFILES_ACTIVE=docker
+  doctor-patient-data-provider:
+    build:
+      doctor-patient-data-provider
+    mem_limit: 200m
+    mem_reservation: 50m
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - SPRING_PROFILES_ACTIVE=docker
+  jumps-mail-notifier:
+    build:
+      jumps-mail-notifier
+    mem_limit: 200m
+    mem_reservation: 50m
+    environment:
+      - CLOUDKARAFKA_PASSWORD=${CLOUDKARAFKA_PASSWORD}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - DATA_PROVIDER_HOST=http://doctor-patient-data-provider
+      - SPRING_PROFILES_ACTIVE=docker
+  monitoring-config-server:
+    build:
+      monitoring-config-server
+    mem_limit: 200m
+    mem_reservation: 50m
+  security-gateway:
+    build:
+      security-gateway
+    mem_limit: 200m
+    mem_reservation: 50m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - PULSE_VALUES_HOST='http://avg-values-back-office:8585'
+      - VISITS_HOST='http://visits-back-office:8080'
+  visits-back-office:
+    build:
+      visits-back-office
+    mem_limit: 200m
+    mem_reservation: 50m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    
+  
