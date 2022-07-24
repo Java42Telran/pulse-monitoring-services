@@ -62,6 +62,8 @@ services:
       security-gateway
     mem_limit: 200m
     mem_reservation: 50m
+    ports:
+      - "9090:9090"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - PULSE_VALUES_HOST='http://avg-values-back-office:8585'
